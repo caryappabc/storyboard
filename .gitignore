@@ -18,6 +18,7 @@
 /client/build
 
 /client/.env
+
  
 # misc
 /client/.DS_Store
