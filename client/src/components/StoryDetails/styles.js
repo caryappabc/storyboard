@@ -40,8 +40,8 @@ export default makeStyles((theme) => ({
     },
   },
   tumbnail: {
-    width: "400px",
-    height: "300px",
+    width: "200px",
+    height: "150px",
     objectFit: "cover",
   },
   loadingPaper: {
