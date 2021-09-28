@@ -3,18 +3,17 @@ import { deepPurple } from "@material-ui/core/colors";
 
 export default makeStyles((theme) => ({
   appBar: {
-    borderRadius: 5,
-    margin: "30px 0",
+    marginBottom: "1vh",
     display: "flex",
+    height: "9vh",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "10px 50px",
+    padding: "10px 15px",
+    zIndex: 10,
+    borderBottom: "1px solid #fff",
   },
-  heading: {
-    color: "#3C4F76",
-    textDecoration: "none",
-  },
+
   image: {
     marginLeft: "15px",
   },
@@ -33,21 +32,31 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     fontWeight: "bold",
     paddingLeft: "10px",
+    color: "#000000",
   },
   user: {
     display: "flex",
     justifyContent: "space-between",
   },
   logout: {
-    backgroundColor: "#984447",
+    backgroundColor: "#7B5E7B",
     "&:hover": {
-      fontWeight: "bold",
-      backgroundColor: "#C07275",
+      backgroundColor: "#7B5E7B",
     },
   },
+  login: {
+    backgroundColor: "#10004D",
+  },
   brandContainer: {
+    marginLeft: 10,
     display: "flex",
-    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  brandlogo: {
+    width: "50px",
+    height: "100%",
+    borderRadius: "30%",
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),

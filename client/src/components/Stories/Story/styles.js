@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   avatar: {
-    backgroundColor: "#236290",
+    backgroundColor: "#10004D",
   },
   overlay: {
     position: "absolute",
@@ -28,6 +28,10 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  cardAction: {
+    display: "block",
+    textAlign: "initial",
+  },
   like: {
     backgroundColor: "#FCF7F8",
     "&:hover": {
@@ -38,15 +42,14 @@ export default makeStyles((theme) => ({
   edit: {
     backgroundColor: "#EBEBEB",
     "&:hover": {
-      fontWeight: "bold",
       backgroundColor: "#E7EAEE",
     },
   },
   delete: {
-    backgroundColor: "#984447",
+    backgroundColor: "#7B5E7B",
     "&:hover": {
-      fontWeight: "bold",
-      backgroundColor: "#C07275",
+      backgroundColor: "#7B5E7B",
+      color: "#fff",
     },
   },
   user: {

@@ -15,6 +15,10 @@ app.use(cors());
 app.use("/stories", storiesRouter);
 app.use("/user", userRouter);
 
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
 const port = process.env.PORT || 5000;
 
 mongoose

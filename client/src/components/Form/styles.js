@@ -9,7 +9,8 @@ export default makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     borderRadius: "3px",
-    backgroundColor: "#F3F5F7",
+    backgroundColor: "#FFFDFD",
+    color: "#7B5E7B",
   },
   form: {
     display: "flex",
@@ -23,19 +24,17 @@ export default makeStyles((theme) => ({
   clearButton: {
     marginBottom: 10,
     color: "black",
-    backgroundColor: "#DDDBF1",
+    backgroundColor: "#DDDDDD",
     "&:hover": {
-      color: "white",
-      backgroundColor: "#2A2F3C",
+      backgroundColor: "#FAFAFA",
     },
   },
   buttonSubmit: {
     marginBottom: 10,
     color: "white",
-    backgroundColor: "#3C4F76",
+    backgroundColor: "#10004D",
     "&:hover": {
-      color: "black",
-      backgroundColor: "#6F7B9B",
+      backgroundColor: "#10004D",
     },
   },
 }));

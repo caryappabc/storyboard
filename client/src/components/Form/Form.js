@@ -3,17 +3,20 @@ import { TextField, Typography, Button, Paper } from "@material-ui/core";
 import FileBase64 from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createStory, updateStory } from "../../actions/stories";
+import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 
 function Form({ currentId, setCurrentId }) {
+  const history = useHistory();
+
   const [storyData, setStoryData] = useState({
     title: "",
     message: "",
     tags: [],
-    selectedFeild: "",
+    selectedFile: "",
   });
   const story = useSelector((state) =>
-    currentId ? state.stories.find((p) => p._id === currentId) : null
+    currentId ? state.stories.stories.find((p) => p._id === currentId) : null
   );
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -23,23 +26,24 @@ function Form({ currentId, setCurrentId }) {
     if (story) return setStoryData(story);
   }, [story]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (currentId) {
+    if (currentId === 0) {
+      dispatch(createStory({ ...storyData, name: user?.userData?.name }));
+      clear();
+    } else {
       dispatch(
         updateStory(currentId, { ...storyData, name: user?.userData?.name })
       );
-    } else {
-      dispatch(createStory({ ...storyData, name: user?.userData?.name }));
+      clear();
     }
-    clear();
   };
 
   if (!user?.userData?.name) {
     return (
       <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
+        <Typography variant="h5" align="center" style={{ fontWeight: "bold" }}>
           Login to add a Story
         </Typography>
       </Paper>
@@ -47,12 +51,12 @@ function Form({ currentId, setCurrentId }) {
   }
 
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setStoryData({
       title: "",
       message: "",
       tags: [],
-      selectedFeild: "",
+      selectedFile: "",
     });
   };
   return (
@@ -63,7 +67,7 @@ function Form({ currentId, setCurrentId }) {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
+        <Typography variant="h5" style={{ fontWeight: "bold" }}>
           {currentId ? `Edit` : `Create`} a Story
         </Typography>
         <TextField

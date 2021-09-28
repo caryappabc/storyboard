@@ -2,9 +2,46 @@ import mongoose from "mongoose";
 import Story from "../models/story.model.js";
 
 export const getStories = async (req, res) => {
+  const { page } = req.query;
   try {
-    const stories = await Story.find();
-    res.status(200).json(stories);
+    const LIMIT = 9; // number of entries per page
+    const startIndex = (Number(page) - 1) * LIMIT; // calculate the starting index for each page
+    const total = await Story.countDocuments({});
+    const stories = await Story.find()
+      .sort({ _id: -1 }) // sort to get the latest entry first
+      .limit(LIMIT)
+      .skip(startIndex);
+    res.status(200).json({
+      data: stories,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(total / LIMIT), //calculating thr total number of pages
+    });
+  } catch (error) {
+    res.status(404).json({ Message: error.message });
+  }
+};
+
+export const getStory = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const story = await Story.findById(id);
+
+    res.status(200).json(story);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getStoriesBySearch = async (req, res) => {
+  const { searchQuery } = req.query;
+  try {
+    const title = new RegExp(searchQuery, "i");
+
+    const stories = await Story.find({
+      $or: [({ title: title }, { tags: title })],
+    });
+    res.status(200).json({ data: stories });
   } catch (error) {
     res.status(404).json({ Message: error.message });
   }

@@ -1,6 +1,13 @@
 import axios from "axios";
+//--------------------------
+//development server
+// const API = axios.create({ baseURL: "http://localhost:5000" });
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+//--------------------------
+//production server
+const API = axios.create({
+  baseURL: "https://storyboardbackend.herokuapp.com/",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("user")) {
@@ -11,7 +18,10 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchStories = () => API.get("/stories");
+export const fetchStories = (page) => API.get(`/stories?page=${page}`);
+export const fetchStory = (id) => API.get(`/stories/${id}`);
+export const fetchStoriesBySearch = (searchQuery) =>
+  API.get(`/stories/search?searchQuery=${searchQuery.search || "none"}`);
 export const createStory = (newStory) => API.post("/stories", newStory);
 export const updateStory = (id, updatedStory) =>
   API.patch(`/stories/${id}`, updatedStory);
