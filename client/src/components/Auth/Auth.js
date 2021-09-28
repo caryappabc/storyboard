@@ -47,7 +47,8 @@ const Auth = () => {
       console.log(error.message);
     }
   };
-  const googleFailure = () => {
+  const googleFailure = (error) => {
+    console.log(error);
     console.log("Google Login Failed , Try Again later");
   };
   const handleShowPassword = () => {
